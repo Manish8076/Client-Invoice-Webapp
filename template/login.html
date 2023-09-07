@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="full" >
+<div class="container" style="margin-top:100px;" >
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="containering">
+            <div class="contain">
+                <img id = 'logo'src="{% static 'img/logo.png' %}" alt="">
+                {% csrf_token %}
+                {{form}}
+                 <br>    
+                <div>
+                    <button style="margin-left: 120px;" type="submit" class="btn btn-primary my-3">LogIn</button>
+                </div>
+            </div>
+        </div>
+           
+    </form>
+
+</div>
+</div>
+
+{% endblock body %}

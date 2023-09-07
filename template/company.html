@@ -1,0 +1,85 @@
+
+{% extends 'dashboard.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+
+
+       <div class="col-sm-4">
+       <a href=""><h5 class="alert my-2 alert alert-primary text-center" >Add Service Provider</h5></a>
+       
+       
+       <form action="" method='post'>
+        {% csrf_token %}
+        {{form}}
+        <br>
+        <button type='submit' class='btn btn-primary btn-md-3' >Save Form</button>
+        <br>
+        <br>
+        <br>
+
+    </form>
+
+
+       </div>
+
+      <div class="col">
+        <h2 class = "alert alert-primary text-center p-2" >All Services</h2>
+        <table class="table" >
+          <thead>
+            <tr>
+              <th scope="col" >Company Name</th>
+              <th scope="col" >Phone Number</th>
+              <th scope="col" >Handly by</th>            
+              <th scope="col" >Client</th>
+              <th scope="col" >Action</th>
+            </tr>
+          </thead>
+
+           <tbody>
+            {% for obj in data %}
+            <tr>
+              <td>{{ obj.company_name }}</td>
+              <td>{{obj.phone}}</td>
+              <td>{{ obj.handle_by }}</td>      
+              <td>{{ obj.client }}</td>
+              <td>
+                <div class="row">
+                  <div class="col-sm-3">
+                     <a href="{% url 'update_company' obj.id %}" class ="btn btn-warning btn-sm"  >Edit</a>
+                  </div>
+                   <div class="col-sm-3">
+                    <form action="{% url 'delete_company' obj.id %}" method="post" >
+                      {% csrf_token %}
+                      <button type='submit' class="btn btn-danger btn-sm" onclick="return confirm
+                      ('Are you sure want to delete this item')" >Delete</button>
+                   </form>
+                  </div>
+
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>       
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock body %}

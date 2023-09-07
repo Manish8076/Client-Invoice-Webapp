@@ -1,0 +1,22 @@
+
+
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+
+        <button type="submit" class="btn btn-primary my-2" >Save Changes</button>
+    </form>
+</div>
+
+
+{% endblock body %}

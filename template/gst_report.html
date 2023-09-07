@@ -1,0 +1,111 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container my-4 ">
+
+    <div class="upper">
+        <br>
+        <button class="btn btn-primary" >Download Pdf</button>
+        <a class="btn btn-danger" href="{% url 'invoice_report' %}">Go back</a>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col sm-5 ">
+            <img src="{% static 'img/logo.png' %}" alt="" style="width:300px; height:300px;">
+    
+            <h3>Invoice</h3>
+        </div>
+        
+        <div class="col sm-2 "></div>
+
+        <div class="col sm-5 ">
+            <br>
+            <br>
+            <br>
+            <h2 style="border-bottom: 2px solid black;" >NetcoreInfo Business Group</h2>
+            <br>
+            <p><b>Contact:- </b> +91-9267952538 </p>
+            <p><b>Website:- </b><a href="https://www.netcoreinfo.com">www.netcoreinfo.com</a></p>
+            <p><b>Email:- </b> corporate@netcoreinfo.com </p>
+
+        </div>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col sm-2 " style="border: 2px solid black; border-radius:10px; padding-left:20px; margin-right: 30px;">
+                <br>
+                <p><b>#Invoice Details </b></p>
+                <br>
+                <p>Dated:  {{companyData.created_at}}</p>
+                <p>Customer GST No. :  {{companyData.gst_number}} </p>
+                <p>Company Name: {{companyData.company_name}} </p>
+                <p>Handle by: {{companyData.handle_by}} </p>
+                <p>Phone Number: {{companyData.phone}} </p>
+            </div>
+
+            <div class="col sm-5 " style="border: 2px solid black; border-radius:10px; padding-left:20px; ">
+                <br>
+                <p><b>Client Details </b></p>
+                <br>
+                <p>Company Name : {{clientData.company_name}}</p>
+                <p>GST Number: {{clientData.gst_number}} </p>
+                <p>Country: {{clientData.country}} </p>
+                <p>State: {{clientData.state}} </p>
+                <p>Address: {{clientData.address}} </p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        
+        <h4>Invoice Description</h4>
+        {% if not servicesData %}
+            <h5 class="text-center mt-4"><span class="rounded bg-danger px-2 py-1 text-white" >Service Details not available. Please insert details first to get data.
+        {% else %}        
+            <table class="table" style="border: solid 1px black;">
+            
+                <br>
+                <thead >
+                    <tr>
+                        <th scope="col" style="border: solid 1px black;" >Sr. No.</th>
+                        <th scope="col" style="border: solid 1px black;" >Description of Services</th>
+                        <th scope="col" style="border: solid 1px black;" >Quantity</th>
+                        <th scope="col" style="border: solid 1px black;" >Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in servicesData %}
+                    <tr>
+                        <td style="border: solid 1px black;" >{{obj.id}}</td>
+                        <td style="border: solid 1px black;" >{{obj.description}}</td>
+                        <td style="border: solid 1px black;" >{{obj.quantity}}</td>
+                        <td style="border: solid 1px black;" >Rs. {{obj.amount}} </td>
+                       
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td style="border: solid 1px black;" >#</td>
+                        <td>GST 18%</td>
+                        <td style="border-right: solid 1px black;" ></td>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+</div>
+
+
+{% endblock body %}

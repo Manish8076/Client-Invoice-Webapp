@@ -1,0 +1,20 @@
+
+
+.containering{
+    margin-left: 500px;
+    background-color: rgb(96, 96, 98);
+    border-radius: 20px;
+    width: 350px;
+    height: 550px;
+}
+.contain{
+    margin: 20px;
+    width: 300px;
+    height: 500px;
+    color: white;
+}
+.contain img{
+    width: 325px;
+    height: 300px;
+}
+

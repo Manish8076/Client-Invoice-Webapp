@@ -1,0 +1,21 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block body %}
+<h2 class = "alert alert-primary text-center p-2" >Update Company Details</h2>
+<br>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+
+        {% comment %} <button type="submit" class="btn btn-primary my-2" >Save Changes</button> {% endcomment %}
+        <form action="{% url 'service_provider' %}" method="post" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary my-2" >Save Changes</button
+         </form>
+    </form>
+</div>
+
+
+{% endblock body %}

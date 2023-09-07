@@ -1,0 +1,46 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="col" style="margin: 50px;" >
+    <h2 class = "alert alert-primary text-center p-2" >List of All Invoice Report</h2>
+    <table class="table" style="margin-left: 30px;">
+      <thead >
+        <tr>
+           <th scope="col" >Id</th>
+          <th scope="col" >Company Name</th>
+          <th scope="col" >Gst Number</th>
+          <th scope="col" >Address</th>
+          <th scope="col" >Created At</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+       <tbody>
+        {% for obj in allclient %}
+        <tr>
+          <td>{{ obj.id}}</td>
+          <td>{{ obj.company_name}}</td>
+          <td>{{ obj.gst_number}}</td>
+          <td>{{ obj.address}}</td>
+          <td>{{ obj.created_at}}</td>
+          <td>
+            <div class="row">
+
+               <div class="col-sm-2">
+                   <a href="{% url 'gst_report' obj.id  %}" class ="btn btn-primary"  >GST Report</a>
+                </div> 
+            
+
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>  
+
+{% endblock body %}
